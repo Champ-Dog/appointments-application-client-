@@ -1,0 +1,87 @@
+/* Color palette:
+#845EC2 #D65DB1 #FF6F91 #FF9671 #FFC75F #F9F871 */
+
+/* Common Styling */
+
+* {
+  font-family: Verdana, sans-serif;
+}
+
+.card {
+  box-shadow: 0 0 2px gray;
+  border-radius: 0 !important;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.normal-text {
+  font-size: 1rem;
+}
+
+.anchor {
+  color: #845EC2 !important;
+  text-decoration: underline !important;
+  font-size: 16px !important;
+}
+
+.primary-button {
+  background-color: #FFC75F !important;
+  border-color: #FFC75F !important;
+  height: 40px !important;
+  width: 100% !important;
+  color: #845EC2 !important;
+  font-size: 16px !important;
+}
+
+/* Ant Design override */
+
+input {
+  border-radius: 2px !important;
+  border: 1px solid rgba(128, 128, 128, 0.521) !important;
+  height: 40px !important;
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid gray !important;
+}
+
+label {
+  font-size: 16px !important;
+  color: black !important;
+}
+
+.ant-form-item {
+  margin: 10px 0 !important;
+}
+
+
+/* Authentication Pages */
+
+.authentication {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #845EC2;
+}
+
+.authentication-form {
+  width: 400px;
+}
+
+.authentication .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #FFC75F;
+  color: #845EC2 !important;
+  max-width: max-content !important;
+  padding: 7px 15px;
+  margin-left: -40px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
