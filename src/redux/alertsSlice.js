@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 // Show or hide loading state (for alerts), modularised for universal usage
 
@@ -20,4 +20,4 @@ export const alertsSlice = createSlice({
   },
 });
 
-export const { showLoading, hideLoading } = alertsSlice.actions
+export const { showLoading, hideLoading } = alertsSlice.actions;
