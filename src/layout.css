@@ -34,3 +34,34 @@
     height: 83vh;
     width: 100%;
 }
+
+/* Sidebar menu styling */
+
+.menu {
+    margin-top: 100px;
+}
+
+.menu-item {
+    margin-top: 30px;
+
+}
+
+.menu-item a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.menu-item i {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+}
+
+.active-menu-item {
+    color: white;
+    background-color: #e8b555;
+    padding: 5px;
+    border-radius: 5px;
+}
