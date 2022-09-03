@@ -26,12 +26,16 @@ function ProtectedRoute(props) {
       if (response.data.success) {
         dispatch(setUser(response.data.data));
       } else {
-        // If unsuccessful, redirect to login, as this indicates an authentication issue
+        // If unsuccessful, redirect to login, as this indicates an authentication issue.
+        // Clear localStorage to remove potentially faulty token
+        localStorage.clear()
         navigate("/login");
       }
     } catch (error) {
       dispatch(hideLoading());
       // Any errors should redirect to login, as this indicates an authentication issue
+      // Clear localStorage to remove potentially faulty token
+      localStorage.clear();
       navigate("/login");
     }
   };
