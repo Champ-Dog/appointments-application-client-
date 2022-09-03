@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../layout.css";
 
 function Layout({ children }) {
   const location = useLocation();
+
+  // Set user so username can be displayed
+  const { user } = useSelector((state) => state.user);
 
   // Sidebar menu
   const userMenu = [
@@ -37,6 +41,9 @@ function Layout({ children }) {
 
   const menuToBeRendered = userMenu;
 
+  // Rules for sidebar collapse/expand
+  const [collapsed, setCollapsed] = useState(false);
+  
   return (
     <div className="main">
       <div className="d-flex layout">
@@ -61,7 +68,8 @@ function Layout({ children }) {
                   }`}
                 >
                   <i className={menu.icon}></i>
-                  <Link to={menu.path}>{menu.name}</Link>
+                  {/* Only show link (text) if Sidebar is expanded */}
+                  {!collapsed && <Link to={menu.path}>{menu.name}</Link>}
                 </div>
               );
             })}
@@ -70,7 +78,31 @@ function Layout({ children }) {
 
         {/* Body */}
         <div className="content">
-          <div className="header">Header</div>
+          <div className="header">
+            {/* Display Close/Expand icons for Sidebar depending on current (opposing) State, 
+            and change State appropriately to trigger behaviour e.g., show 
+            Close icon when expanded and change Collapsed state to false */}
+            {collapsed ? (
+              <i
+                className="ri-menu-2-fill header-action-icon"
+                onClick={() => setCollapsed(false)}
+              ></i>
+            ) : (
+              <i
+                className="ri-close-fill header-action-icon"
+                onClick={() => setCollapsed(true)}
+              ></i>
+            )}
+
+            <div className="d-flex align-items-center px-4">
+              <i className="ri-notification-line header-action-icon px-3"></i>
+              {/* user? is used to prevent crashing when a user is not present/logged in */}
+              <Link className="anchor" to="/profile">
+                {user?.name}
+              </Link>
+            </div>
+          </div>
+
           <div className="body">{children}</div>
         </div>
       </div>

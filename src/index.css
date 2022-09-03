@@ -44,6 +44,7 @@
   color: #845EC2 !important;
   text-decoration: underline !important;
   font-size: 16px !important;
+  cursor: pointer;
 }
 
 .primary-button {
@@ -77,7 +78,6 @@ label {
 .ant-form-item {
   margin: 10px 0 !important;
 }
-
 
 /* Authentication Pages */
 

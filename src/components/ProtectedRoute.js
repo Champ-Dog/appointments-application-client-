@@ -1,8 +1,47 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setUser } from "../redux/userSlice";
+import { showLoading, hideLoading } from "../redux/alertsSlice";
 
 // Check if token exists to access protected routes, otherwise redirect user to login
 function ProtectedRoute(props) {
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const getUser = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.post(
+        "/api/user/get-user-info-by-id",
+        { token: localStorage.getItem("token") },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        dispatch(setUser(response.data.data));
+      } else {
+        // If unsuccessful, redirect to login, as this indicates an authentication issue
+        navigate("/login");
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      // Any errors should redirect to login, as this indicates an authentication issue
+      navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    if (!user) {
+      getUser();
+    }
+  }, [user]);
+
   if (localStorage.getItem("token")) {
     return props.children;
   } else {
